@@ -33,3 +33,8 @@ marp: true
   7. [ 大语言模型解析 IV: Attention Mechanism II](2025/lecture7.html)
   8. [ 大语言模型解析 V: Attention Mechanism III](2025/lecture8.html)
   9. [ 大语言模型解析 VI: 数据，模型运行，代码](2025/lecture9.html)
+
+---
+
+课程目录
+  10. [大语言模型解析 VII: 模型训练二三事](2025/lecture10.html)
