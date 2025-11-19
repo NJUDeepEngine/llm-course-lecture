@@ -39,3 +39,4 @@ marp: true
 课程目录
   10. [大语言模型解析 VII: 模型训练二三事](2025/lecture10.html)
   11. [大语言模型解析 VIII: 模型推理二三事](2025/lecture11.html)
+  12. [大语言模型解析 IX: Sparse Attention](2025/lecture12.html)
