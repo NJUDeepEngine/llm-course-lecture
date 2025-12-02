@@ -192,7 +192,7 @@ meta: {"file_path": "./files/hello_world.txt"}
 
 ---
 
-# Spiltter
+# Splitter
 
 * 短文档块的缺点：
 	1. 信息量过少，大模型找不到参考信息
