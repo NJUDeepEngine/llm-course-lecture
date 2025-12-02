@@ -15,6 +15,7 @@ OBJECTS += $(PREFIX)/2025/lecture10.html
 OBJECTS += $(PREFIX)/2025/lecture11.html 
 OBJECTS += $(PREFIX)/2025/lecture12.html 
 OBJECTS += $(PREFIX)/2025/lecture13.html 
+OBJECTS += $(PREFIX)/2025/lecture14.html 
 # OBJECTS += $(PREFIX)/lecture1.html 
 # OBJECTS += $(PREFIX)/lecture2.html 
 # OBJECTS += $(PREFIX)/lecture3.html
