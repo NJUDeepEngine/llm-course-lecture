@@ -48,9 +48,9 @@ a[href='red'] {
 # 使用Haystack实现RAG流程
 [**Haystack**](https://haystack.deepset.ai/)：一个用于构建基于LLM的应用程序的框架，包括：
 - Document：Haystack的核心数据类型
-- component：组件单元，用于实现一个功能，例如：清理文件、切分文档、生成嵌入、初步检索、重排序等等
-- pipeline：流水线，将组件串联起来，自动依次调用组件
-- document store：存储文档的向量数据库
+- Component：组件单元，用于实现一个功能，例如：清理文件、切分文档、生成嵌入、初步检索、重排序等等
+- Pipeline：流水线，将组件串联起来，自动依次调用组件
+- Document store：存储文档的向量数据库
 
 ```bash
 pip install haystack-ai 
@@ -198,7 +198,7 @@ meta: {"file_path": "./files/hello_world.txt"}
 	1. 信息量过少，大模型找不到参考信息
 	2. 文档数量提升，降低检索速度
 	3. 更多的语义碎片，丢失语义连贯性和长文本中的实体依赖关系，俗称“说话说一半”
-* **文档块的内容要全面**：但往往全面的文档块会很长，所以更重要的是如何在保证文档块长度适中的情况下，把“说话说一半”提升到“说话说四分之三”*
+* **文档块的内容要全面**：但往往全面的文档块会很长，所以更重要的是如何在保证文档块长度适中的情况下，把“说话说一半”提升到“说话说四分之三”
 * **文档块的长度要平均**：尽量保证所有文档块的长度都差不多长。因为在计算相似度分数时，嵌入模型会更倾向于给短文档块打更高的分数
 
 
@@ -217,7 +217,7 @@ meta: {"file_path": "./files/hello_world.txt"}
 * **split_length**：切分的基本长度
 * **split_overlap**：为了减少“说话说一半”的情况出现，让文档块之间相互重叠。假如2 3是连贯内容，重叠就可以使得它们连起来；不重叠则会被切断
 
-![bg right:45% 60%](images/l13/chunk.png)
+![bg right:45% 60%](../images/2025/l14/chunk.png)
 
 ---
 
@@ -551,7 +551,7 @@ score: -0.001667837080811814
 - similarity reranker基于交叉编码器(cross-encoder)架构
 - 直接将两个句子串联起来，交给BERT，使得两个句子的词元向量可以在BERT内部相互交叉(cross)地进行交互，最终经过softmax得到一个相似度分数
 
-![bg right:40% 90%](images/l13/cross_encoder.png)
+![bg right:40% 90%](../images/2025/l14/cross_encoder.png)
 
 
 ---
@@ -562,7 +562,7 @@ score: -0.001667837080811814
 
 <div style="display:contents;" data-marpit-fragment>
 
-![w:700 center](images/l13/cross-vs-colbert.png)
+![w:700 center](../images/2025/l14/cross-vs-colbert.png)
 
 </div>
 

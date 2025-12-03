@@ -19,9 +19,9 @@
 <p><a href="https://haystack.deepset.ai/"><strong>Haystack</strong></a>：一个用于构建基于LLM的应用程序的框架，包括：</p>
 <ul>
 <li>Document：Haystack的核心数据类型</li>
-<li>component：组件单元，用于实现一个功能，例如：清理文件、切分文档、生成嵌入、初步检索、重排序等等</li>
-<li>pipeline：流水线，将组件串联起来，自动依次调用组件</li>
-<li>document store：存储文档的向量数据库</li>
+<li>Component：组件单元，用于实现一个功能，例如：清理文件、切分文档、生成嵌入、初步检索、重排序等等</li>
+<li>Pipeline：流水线，将组件串联起来，自动依次调用组件</li>
+<li>Document store：存储文档的向量数据库</li>
 </ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">pip install haystack-ai 
 </code></pre>
@@ -164,7 +164,7 @@ meta: {<span class="hljs-string">&quot;file_path&quot;</span>: <span class="hljs
 <li>更多的语义碎片，丢失语义连贯性和长文本中的实体依赖关系，俗称“说话说一半”</li>
 </ol>
 </li>
-<li data-marpit-fragment="2"><strong>文档块的内容要全面</strong>：但往往全面的文档块会很长，所以更重要的是如何在保证文档块长度适中的情况下，把“说话说一半”提升到“说话说四分之三”*</li>
+<li data-marpit-fragment="2"><strong>文档块的内容要全面</strong>：但往往全面的文档块会很长，所以更重要的是如何在保证文档块长度适中的情况下，把“说话说一半”提升到“说话说四分之三”</li>
 <li data-marpit-fragment="3"><strong>文档块的长度要平均</strong>：尽量保证所有文档块的长度都差不多长。因为在计算相似度分数时，嵌入模型会更倾向于给短文档块打更高的分数</li>
 </ul>
 </section>
@@ -180,7 +180,7 @@ meta: {<span class="hljs-string">&quot;file_path&quot;</span>: <span class="hljs
 </li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-background-color="#fff" data-theme="gaia" lang="C" data-marpit-pagination="13" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:45%;" data-marpit-pagination-total="72" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/l13/chunk.png&quot;);background-size:60%;"></figure></div></section></foreignObject><foreignObject width="55%" height="720"><section id="13" data-marpit-fragments="2" data-paginate="true" data-background-color="#fff" data-theme="gaia" lang="C" data-marpit-pagination="13" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:45%;" data-marpit-pagination-total="72" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-background-color="#fff" data-theme="gaia" lang="C" data-marpit-pagination="13" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:45%;" data-marpit-pagination-total="72" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;../images/2025/l14/chunk.png&quot;);background-size:60%;"></figure></div></section></foreignObject><foreignObject width="55%" height="720"><section id="13" data-marpit-fragments="2" data-paginate="true" data-background-color="#fff" data-theme="gaia" lang="C" data-marpit-pagination="13" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:45%;" data-marpit-pagination-total="72" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h1 id="documentsplitter-1">DocumentSplitter</h1>
 <ul>
 <li data-marpit-fragment="1"><strong>split_length</strong>：切分的基本长度</li>
@@ -468,7 +468,7 @@ score: -0.001667837080811814
 <li><strong>丢失词元信息</strong>：BERT产生的众多词元向量全部被映射到单一句向量，丢失了很多文本中的细节。快速地粗读文本，速度虽快但忽略了细节，只了解了个大概</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="#fff" data-theme="gaia" lang="C" data-marpit-pagination="37" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="72" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/l13/cross_encoder.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="60%" height="720"><section id="37" data-paginate="true" data-background-color="#fff" data-theme="gaia" lang="C" data-marpit-pagination="37" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="72" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="#fff" data-theme="gaia" lang="C" data-marpit-pagination="37" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="72" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;../images/2025/l14/cross_encoder.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="60%" height="720"><section id="37" data-paginate="true" data-background-color="#fff" data-theme="gaia" lang="C" data-marpit-pagination="37" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-pagination-total="72" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h2 id="similarityreranker-%E7%9B%B8%E4%BC%BC%E5%BA%A6%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9E%8B">SimilarityReranker: 相似度计算模型</h2>
 <ul>
 <li>similarity reranker基于交叉编码器(cross-encoder)架构</li>
@@ -481,7 +481,7 @@ score: -0.001667837080811814
 <li data-marpit-fragment="1"><strong>cross vs. colbert</strong>: 词元向量的交互从<strong>相似度计算阶段</strong>(colbert)，提前到<strong>BERT模型内部</strong>(cross)</li>
 </ul>
 <div style="display:contents;" data-marpit-fragment>
-<p><img src="images/l13/cross-vs-colbert.png" alt="center" style="width:700px;" /></p>
+<p><img src="../images/2025/l14/cross-vs-colbert.png" alt="center" style="width:700px;" /></p>
 </div>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-background-color="#fff" data-theme="gaia" lang="C" data-marpit-pagination="39" style="--paginate:true;--background-color:#fff;--theme:gaia;background-color:#fff;background-image:none;" data-marpit-pagination-total="72">
