@@ -24,16 +24,16 @@ marp: true
 ---
 
 课程目录
-  1. [课程简介](2025/lecture1.html)
-  2. [ 特征空间的变换1: 前反向运行视角理解深度学习模型](2025/lecture2.html)
+  1. [课程简介](2026/lecture1.html)
+  <!-- 2. [ 特征空间的变换1: 前反向运行视角理解深度学习模型](2025/lecture2.html)
   3. [ 特征空间的变换2: 前反向运行视角理解深度学习模型](2025/lecture3.html)
   4. [ 大语言模型解析 I: Input/Positional Embedding](2025/lecture4.html)
   5. [ 大语言模型解析 II: RMSNorm/FFN](2025/lecture5.html)
   6. [ 大语言模型解析 III: Attention Mechanism I](2025/lecture6.html)
   7. [ 大语言模型解析 IV: Attention Mechanism II](2025/lecture7.html)
   8. [ 大语言模型解析 V: Attention Mechanism III](2025/lecture8.html)
-  9. [ 大语言模型解析 VI: 数据，模型运行，代码](2025/lecture9.html)
-
+  9. [ 大语言模型解析 VI: 数据，模型运行，代码](2025/lecture9.html) -->
+<!--
 ---
 
 课程目录
@@ -41,4 +41,4 @@ marp: true
   11. [大语言模型解析 VIII: 模型推理二三事](2025/lecture11.html)
   12. [大语言模型解析 IX: Sparse Attention](2025/lecture12.html)
   13. [大语言模型推理应用: 检索增强生成](2025/lecture13.html)
-  14. [大语言模型推理应用: 检索增强生成II](2025/lecture14.html)
+  14. [大语言模型推理应用: 检索增强生成II](2025/lecture14.html) -->
