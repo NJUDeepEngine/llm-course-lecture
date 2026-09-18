@@ -578,24 +578,59 @@ Sinusoidal PE: Attention is all you need
 
 ---
 
-# Rotary PE的2D理解
+# Rotary PE 的 2D 理解：把向量看成箭头
 
-回忆下欧拉公式：$e^{ix}=cos(x)+isin(x)$
+先只看二维向量 $x=(x_0,x_1)$。把它画成平面上的一支箭头，位置 $n$ 不再通过加一个新向量表示，而是让箭头旋转：
 
-<div style="display:contents;" data-marpit-fragment>
+$$
+R(n\theta)x =
+\begin{bmatrix}\cos(n\theta)&-\sin(n\theta)\
+\sin(n\theta)&\cos(n\theta)\end{bmatrix}x
+$$
 
-![w:700 center](../images/2026/l4/roformer_eq.png)
-
-</div>
-
-<div style="display:contents;" data-marpit-fragment>
-
-因此，上述函数$f$和$g$中的指数函数$e^{ix}$具体表示为 
-![w:600 center](../images/2026/l4/euler.png)
-</div>
-
+```text
+x = (1, 0), θ = 30°
+位置 0：旋转 0°   → (1, 0)
+位置 1：旋转 30°  → (cos 30°, sin 30°)
+位置 2：旋转 60°  → (cos 60°, sin 60°)
+```
 
 ---
+
+# RoPE：位置改变方向，长度保持不变
+
+旋转不会改变向量长度：
+
+$$\|R(n\theta)x\|=\|x\|$$
+
+因此，同一个 token 在不同位置有不同方向，但不会因为位置编码而改变向量的尺度。
+
+- 位置 0：$x$
+- 位置 1：$R(\theta)x$
+- 位置 2：$R(2\theta)x$
+
+---
+
+# RoPE 为什么能表达相对位置？
+
+设 $q$ 位于位置 $m$，$k$ 位于位置 $n$。attention 中的点积满足：
+
+$$
+(R(m\theta)q)^\top R(n\theta)k
+= q^\top R((n-m)\theta)k
+$$
+
+结果只依赖位置差 $n-m$，所以 attention 可以感知两个 token 相距多远。
+
+> RoPE 给每个位置配一个旋转角度；Q 和 K 比较旋转后的方向时，结果自然包含相对距离信息。
+
+---
+
+# 从二维推广到高维
+
+高维 RoPE 将 hidden vector 的维度两两分组：$(x_0,x_1)$、$(x_2,x_3)$、……，每一对维度在自己的二维平面中旋转。
+
+不同维度使用不同的角速度，因此同时表达短距离和长距离的位置变化。实际模型在 attention 的每一层对 **Q 和 K** 应用 RoPE。
 
 # RoPE实现
 
