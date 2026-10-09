@@ -210,21 +210,21 @@ Normalization：“调整数据分布”
 
 ---
 
-# Normalization的设计思路
+# Normalization 的统计范围
 
-* tensor shape: <batch_size, sequence_length, hidden_dim>
-* 选择最合适的Normalization维度
-  * batch：X=[batch_size,sequence_length, hidden_dim]
-  * sequence： X=[sequence_length, hidden_dim]
-  * hidden: <bs, seq, hidden> => <N, hidden>, X=[hidden_dim]
-    * LayerNorm 沿 hidden 维计算均值和方差
+输入 $X$ 的形状为 $[B,S,H]$：batch、token 位置、hidden 特征。
 
-<div style="display:contents;" data-marpit-fragment>
+- 固定 $b,s$，对向量 $X[b,s,:]$ 的 $H$ 个特征计算统计量。
+- 不混合其他样本，也不跨整段序列统计。
+- LayerNorm 与 RMSNorm 的计算范围相同，使用的统计量不同。
 
-[RMSNorm](https://arxiv.org/pdf/1910.07467) 同样沿 hidden 维计算，但不减去均值；它与 LayerNorm 是不同的归一化方法。
+```text
+输入 X       [B, S, H]
+统计量       [B, S, 1]   ← 沿 hidden 维，keepdim=True
+广播并缩放   [B, S, H]   ← 每个 token 使用自己的统计量
+```
 
-</div>
-
+<!-- 对比：沿 batch 维归约会将不同样本混在一起；沿完整 sequence 维归约会让当前位置依赖其他位置，可能包含未来 token。当前 LLM LayerNorm(H)/RMSNorm(H) 均只沿 H 统计。参考 PyTorch LayerNorm 与 RMSNorm 官方文档。 -->
 
 ---
 
@@ -256,27 +256,32 @@ p { margin: 12px 0; }
 
 # RMSNorm
 
-* PyTorch 提供了 RMSNorm 类的实现[torch.nn.RMSNorm](https://pytorch.org/docs/stable/generated/torch.nn.RMSNorm.html#torch.nn.RMSNorm)
-* 原理：按每个 token 的均方根缩放，再乘以可学习参数 $\gamma$
-  * $y = \text{RMSNorm}(x)=\frac{x}{\text{RMS}[x]}*\gamma$
-  * $\text{RMS}(x)=\sqrt{\frac{\sum_{i=1}^N x_i^2}{N}+\epsilon}$
+固定一个 token，记它的 hidden 向量为 $x\in\mathbb{R}^{H}$：
 
-<div style="display:contents;" data-marpit-fragment>
+$$y_i=\gamma_i\frac{x_i}{\sqrt{\frac1H\sum_{j=1}^{H}x_j^2+\epsilon}}$$
 
-如何利用torch算子自行实现RMSNorm？
+- $H$ 为 hidden 维度，求和只涉及当前 token 的特征。
+- $\gamma\in\mathbb{R}^{H}$ 是可学习的逐维缩放参数。
+- 同一层的所有 batch、token 共享同一个 $\gamma$。
+- $\epsilon$ 用于数值稳定；RMSNorm 不减去均值。
 
-</div>
+<!-- PyTorch 实现：torch.nn.RMSNorm(H)，https://pytorch.org/docs/stable/generated/torch.nn.RMSNorm.html -->
+
 
 ---
 
-# 手搓RMSNorm
+# 手搓 RMSNorm
 
-$y = \text{RMSNorm}(x)=\frac{x}{\text{RMS}[x]}*\gamma$， $\text{RMS}(x)=\sqrt{\frac{\sum_{i=1}^N x_i^2}{N}+\epsilon}$
+$$y_i=\gamma_i\frac{x_i}{\sqrt{\frac1H\sum_{j=1}^{H}x_j^2+\epsilon}}$$
 
-* 输入和输出的shape: <batch_size, sequence_length, hidden_dim>
-* 涉及的计算
-  * 平方，求和，开根
-  * torch提供: tensor.pow, tensor.mean, torch.rsqrt
+输入与输出：$[B,S,H]$。计算分成三步：
+
+1. `x.square().mean(-1, keepdim=True)`：平方均值，形状 $[B,S,1]$。
+2. `rsqrt(mean_square + eps)`：缩放系数，广播乘到 $H$ 个特征。
+3. 逐维乘以 $\gamma$，形状 $[H]$，输出仍为 $[B,S,H]$。
+
+这里 $H$ 始终表示 hidden 维度；batch 与 sequence 维保持不变。
+
 
 ---
 
@@ -300,6 +305,28 @@ torch.testing.assert_close(y, norm(x))
 
 `keepdim=True` 保留 `[b, s, 1]`，广播到各自的 4 个特征。
 验证时统一 $\epsilon$ 和 $\gamma$；$\gamma$ 为可学习参数。
+
+---
+
+# 为什么选择 RMSNorm？
+
+<style scoped>
+p, li { font-size: 30px; }
+table { font-size: 28px; }
+</style>
+
+两者都用于控制每个 token 的激活尺度，但处理方式不同：
+
+| 方法 | 中心化 | 尺度调整 |
+|---|---|---|
+| LayerNorm | 减去均值 | 除以标准差，再学习缩放与偏移 |
+| RMSNorm | 不减均值 | 除以均方根，再学习缩放 |
+
+- **计算更简单**：省去减均值及相关计算。
+- **效果与成本的取舍**：原论文在所测任务中取得相近效果，Llama 采用这一设计。
+- 这不意味着 LayerNorm 失效；均值并非永远不重要，速度收益依赖实现和硬件。
+
+<!-- 依据：Root Mean Square Layer Normalization，https://arxiv.org/abs/1910.07467。论文结果不应泛化为所有模型、任务或现代内核的固定加速比例。Llama pre-norm 分支采用 RMSNorm。 -->
 
 ---
 
