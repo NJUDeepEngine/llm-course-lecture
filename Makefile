@@ -6,6 +6,7 @@ OBJECTS += $(PREFIX)/2026/lecture1.html
 OBJECTS += $(PREFIX)/2026/lecture2.html
 OBJECTS += $(PREFIX)/2026/lecture3.html
 OBJECTS += $(PREFIX)/2026/lecture4.html
+OBJECTS += $(PREFIX)/2026/lecture5.html
 # OBJECTS += $(PREFIX)/2025/lecture1.html
 # OBJECTS += $(PREFIX)/2025/lecture2.html
 # OBJECTS += $(PREFIX)/2025/lecture3.html
