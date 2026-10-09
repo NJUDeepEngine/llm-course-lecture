@@ -164,27 +164,42 @@ Standard score: $\frac{X-\mu}{\sigma}$, Minmax feature scaling: $\frac{X-X_{\min
 
 ---
 
-# Normalization在机器学习中的应用
+# 归一化如何帮助优化
 
-控制激活的尺度，改善优化过程中的数值稳定性。训练效果取决于模型和任务；归一化不等于正则化。
+<style scoped>
+section { padding: 40px 60px; }
+p { margin: 12px 0; }
+.figure-caption { font-size: 24px; }
+</style>
 
-![w:900 center](../images/2026/l5/normal_for_training.png)
+对输入特征做尺度调整，有助于改善优化条件。
 
+![w:800 center](../images/2026/l5/normal_for_training.png)
+
+<p class="figure-caption">图中展示参数空间的优化轨迹；输入缩放的效果仅作示意。</p>
+
+**“更容易优化”，就一定“更不容易过拟合”吗？**
+
+<!-- 此页讲输入特征缩放对参数优化的直觉，不是直接对参数做 norm，也不是 RMSNorm 让损失曲面变圆的证明。原图“较大参数梯度主导”应口头解释为不同方向优化条件不均衡，不能以参数大小推断梯度大小。结尾问题引出下一页的优化与泛化目标区别。 -->
 
 ---
 
+# Normalization 与 Regularization
 
-# Normalization v.s. Regularization
+前一页讨论**优化是否容易**；还要区分**泛化是否可靠**。
 
-* 目标不同：
-  * Normalization=调整数据
-    * 比如: $X'=\frac{X-X_{\min}}{X_{\max}-X_{\min}}$
-  * Regularization=调整预测/损失函数
-    * 比如: $\mathcal{L}(\theta)=\sum_{i=1}^N L(f_\theta(x_i), y_i)+\lambda R(\theta)$
+- **归一化**：调整输入或激活的尺度，帮助稳定计算与优化。
+- **正则化**：通过约束、惩罚或随机化等方式，控制过拟合。
 
+例如，损失惩罚是正则化的一种形式：
+
+$$\mathcal{L}(\theta)=\sum_{i=1}^N L(f_\theta(x_i),y_i)+\lambda R(\theta)$$
+
+归一化也可能影响泛化，但不能据此将它等同于正则化。
+
+<!-- 两者的效果可能交叉，此处区分主要作用机制，不应把“优化”与“泛化”讲成互斥。正则化不只限于修改损失函数，例如 dropout 采用随机化。下一页开始讨论模型内部 hidden activations 的归一化。 -->
 
 ---
-
 
 # 大语言模型引入Normalization
 
