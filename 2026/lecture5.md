@@ -243,19 +243,6 @@ Normalization：“调整数据分布”
 
 ---
 
-# LLM 中的 Normalization
-
-<style scoped>
-section { padding: 35px 52px; }
-h1 { margin-bottom: 12px; }
-p { margin: 12px 0; }
-</style>
-
-![w:1120 center](../images/2026/l5/llm_normalization.png)
-
-<!-- 延续原 CV 图的着色方式：横轴 B（文本样本）、斜轴 S（token 位置）、竖轴 H（hidden 特征）。着色竖条是 X[b,s,:]，一次统计只涉及这条向量。LN 与 RMSNorm 范围相同，统计量不同。公式中的分母实际包含 epsilon，gamma/beta 分别表示逐维缩放/偏移。 -->
----
-
 # LayerNorm
 
 * 针对每个token在hidden_dim维度上做标准化，避免依赖batch/序列长度
@@ -282,6 +269,20 @@ $$y_i=\gamma_i\frac{x_i}{\sqrt{\frac1H\sum_{j=1}^{H}x_j^2+\epsilon}}$$
 
 <!-- PyTorch 实现：torch.nn.RMSNorm(H)，https://pytorch.org/docs/stable/generated/torch.nn.RMSNorm.html -->
 
+
+---
+
+# LLM 中的 Normalization
+
+<style scoped>
+section { padding: 35px 52px; }
+h1 { margin-bottom: 12px; }
+p { margin: 12px 0; }
+</style>
+
+![w:1120 center](../images/2026/l5/llm_normalization.png)
+
+<!-- 延续原 CV 图的着色方式：横轴 B（文本样本）、斜轴 S（token 位置）、竖轴 H（hidden 特征）。着色竖条是 X[b,s,:]，一次统计只涉及这条向量。LN 与 RMSNorm 范围相同，统计量不同。公式中的分母实际包含 epsilon，gamma/beta 分别表示逐维缩放/偏移。 -->
 
 ---
 
