@@ -73,41 +73,7 @@ FlashAttention
 
 ---
 
-# HF 相关参考链接
-
-* [GitHub 仓库](https://github.com/Dao-AILab/flash-attention)（仓库中包含 V1、V2 的论文）
-* [HuggingFace](https://huggingface.co/docs/transformers/main/en/perf_infer_gpu_one)
-* [From Online Softmax to FlashAttention](https://courses.cs.washington.edu/courses/cse599m/23sp/notes/flashattn.pdf)
-* [FlashAttention V1 的推导细节](https://www.zhihu.com/question/611236756/answer/3132304304)
-* [FlashAttention V1、V2 差异总结](https://zhuanlan.zhihu.com/p/665170554)
-
-
-
----
-
 ## FlashAttention
-
-* **Installation**
-* GPU Basics
-* FlashAttention V1
-* FlashAttention V2
-* Other
-
-
----
-
-## Note
-* 一定要先浏览一遍 GitHub 仓库中的 Installation and features
-* 安装过程中会使用 ninja 做编译，一定要注意设置 MAX_JOBS 环境变量，防止机器内存被快速用完编译过程比较慢，这是正常的
-* FlashAttention-2 目前仅支持 Ampere、Ada、Hopper 架构的 GPU
-* FlashAttention-3 仅支持Hopper架构的GPU
-* FlashAttention 仅支持 fp16 和 bf16 两种数据类型
-* 注：必要时不要从pip安装，请从源码安装
-
----
-
-## FlashAttention
-* Installation
 * **GPU Basics**
 * FlashAttention V1
 * FlashAttention V2
@@ -229,7 +195,6 @@ FlashAttention
 
 
 ## FlashAttention
-* Installation
 * GPU Basics
 * **FlashAttention V1**
 * FlashAttention V2
@@ -443,7 +408,6 @@ FlashAttention 的实现是不唯一的，事实上，很多实现都没有完�
 ---
 
 # FlashAttention
-* Installation
 * GPU Basics
 * FlashAttention V1
 * **FlashAttention V2**
@@ -485,7 +449,6 @@ FlashAttention 的实现是不唯一的，事实上，很多实现都没有完�
 
 
 # FlashAttention
-* Installation
 * GPU Basics
 * FlashAttention V1
 * FlashAttention V2
