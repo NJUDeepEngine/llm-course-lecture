@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="230" viewBox="0 0 1100 230">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#24699c"/></marker></defs>
+<g font-family="Arial, PingFang SC, sans-serif" font-size="27" fill="#263746" text-anchor="middle">
+<rect x="10" y="85" width="120" height="60" rx="7" fill="#f0f5fa" stroke="#24699c"/>
+<text x="70" y="124">输入 x</text>
+<rect x="205" y="85" width="180" height="60" rx="7" fill="#f0f5fa" stroke="#24699c"/>
+<text x="295" y="124">Router / top-2</text>
+<rect x="485" y="10" width="230" height="70" rx="7" fill="#f0f5fa" stroke="#24699c"/>
+<text x="600" y="40">专家 3</text><text x="600" y="68">E₃(x) = [1, 0]</text>
+<rect x="485" y="150" width="230" height="70" rx="7" fill="#f0f5fa" stroke="#24699c"/>
+<text x="600" y="180">专家 4</text><text x="600" y="208">E₄(x) = [0, 2]</text>
+<rect x="905" y="85" width="180" height="60" rx="7" fill="#f0f5fa" stroke="#24699c"/>
+<text x="995" y="124">加权求和 y</text>
+<g fill="none" stroke="#24699c" stroke-width="3" marker-end="url(#arrow)"><path d="M130 115 H200"/><path d="M385 110 L480 45"/><path d="M385 120 L480 185"/><path d="M715 45 H815 L900 105"/><path d="M715 185 H815 L900 125"/></g>
+<text x="785" y="32">× 3/7</text><text x="785" y="218">× 4/7</text>
+</g></svg>
