@@ -9,6 +9,7 @@ OBJECTS += $(PREFIX)/2026/lecture4.html
 OBJECTS += $(PREFIX)/2026/lecture5.html
 OBJECTS += $(PREFIX)/2026/lecture6.html
 OBJECTS += $(PREFIX)/2026/lecture7-before-revision.html
+OBJECTS += $(PREFIX)/2026/lecture8.html
 # OBJECTS += $(PREFIX)/2025/lecture1.html
 # OBJECTS += $(PREFIX)/2025/lecture2.html
 # OBJECTS += $(PREFIX)/2025/lecture3.html
@@ -43,6 +44,11 @@ OBJECTS += $(PREFIX)/2026/lecture7-before-revision.html
 # OBJECTS += $(PREFIX)/16.html
 
 all: $(OBJECTS)
+
+$(PREFIX)/2026/lecture8.html: 2026/lecture8.md 2026/images/lecture8/moe-token-flow.svg
+	mkdir -p $(@D)/images/lecture8
+	$(MARP) --html true $< -o $@
+	cp 2026/images/lecture8/moe-token-flow.svg $(@D)/images/lecture8/
 
 $(PREFIX)/%.html: %.md
 	mkdir -p $(@D)
