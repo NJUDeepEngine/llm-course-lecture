@@ -32,7 +32,7 @@ marp: true
   6. [大语言模型解析 III: Attention Mechanism I](2026/lecture6.html)
   7. [大语言模型解析 IV: Attention Mechanism II](2026/lecture7-before-revision.html)
   8. [大语言模型解析 V: MoE、LoRA 与数值精度](2026/lecture8.html)
-  <!-- 9. [ 大语言模型解析 VI: 数据，模型运行，代码](2025/lecture9.html) -->
+  9. [大语言模型解析 VI: 数据与模型运行](2026/lecture9.html) · [Notebook](2026/notebook/lecture9.ipynb)
 <!--
 ---
 

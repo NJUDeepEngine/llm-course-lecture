@@ -10,6 +10,8 @@ OBJECTS += $(PREFIX)/2026/lecture5.html
 OBJECTS += $(PREFIX)/2026/lecture6.html
 OBJECTS += $(PREFIX)/2026/lecture7-before-revision.html
 OBJECTS += $(PREFIX)/2026/lecture8.html
+OBJECTS += $(PREFIX)/2026/lecture9.html
+OBJECTS += $(PREFIX)/2026/notebook/lecture9.ipynb
 # OBJECTS += $(PREFIX)/2025/lecture1.html
 # OBJECTS += $(PREFIX)/2025/lecture2.html
 # OBJECTS += $(PREFIX)/2025/lecture3.html
@@ -50,6 +52,10 @@ $(PREFIX)/2026/lecture8.html: 2026/lecture8.md 2026/images/lecture8/moe-token-fl
 	$(MARP) --html true $< -o $@
 	cp 2026/images/lecture8/moe-token-flow.svg $(@D)/images/lecture8/
 
+$(PREFIX)/2026/notebook/lecture9.ipynb: 2026/notebook/lecture9.ipynb
+	mkdir -p $(@D)
+	cp $< $@
+
 $(PREFIX)/%.html: %.md
 	mkdir -p $(@D)
 	$(MARP) --html true $< -o $@
@@ -61,3 +67,4 @@ clean:
 	rm -f $(PREFIX)/*.html
 	rm -f $(PREFIX)/2025/*.html
 	rm -f $(PREFIX)/2026/*.html
+	rm -f $(PREFIX)/2026/notebook/lecture9.ipynb
